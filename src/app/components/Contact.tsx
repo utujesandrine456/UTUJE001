@@ -5,7 +5,6 @@ import {
   HiOutlineMail, 
   HiOutlinePhone, 
   HiOutlineLocationMarker,
-  HiOutlineGlobe,
   HiOutlineUser,
   HiOutlineDocumentText
 } from 'react-icons/hi';
@@ -45,7 +44,7 @@ export default function Contact() {
           </h2>
           <div className="w-24 h-1.5 rounded-2xl bg-[#00EAFF] mx-auto mb-6"></div>
           <p className="text-white text-lg max-w-3xl mx-auto">
-            Have a project in mind or want to discuss potential opportunities? I'd love to hear from you.
+            Have a project in mind or want to discuss potential opportunities? I&apos;d love to hear from you.
           </p>
         </div>
 
@@ -54,7 +53,7 @@ export default function Contact() {
           <div className="bg-white rounded-2xl p-8 shadow-xl">
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4">
-                Have questions or need more information? We're here to help—reach out anytime!
+                Have questions or need more information? We&apos;re here to help—reach out anytime!
               </h3>
               
               <div className="space-y-4">

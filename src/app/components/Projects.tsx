@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { HiOutlineArrowRight, HiOutlineArrowLeft } from 'react-icons/hi';
 import { FaChevronLeft, FaChevronRight, FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
@@ -56,9 +56,9 @@ export default function Projects() {
     }
   ];
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % projects.length);
-  };
+  }, [projects.length]);
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + projects.length) % projects.length);
@@ -75,12 +75,12 @@ export default function Projects() {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [currentSlide]);
+  }, [nextSlide]);
 
   return (
     <section id="projects" className="py-20 bg-black relative overflow-hidden">
       {/* Decorative Elements - Diagonal Circles */}
-      <div className="absolute top-8 right-8">
+      <div className="absolute top-8 left-8">
         <div className="relative w-24 h-24">
           <div className="absolute top-0 right-0 w-4 h-4 bg-[#00EAFF] rounded-full"></div>
           <div className="absolute top-6 right-6 w-6 h-6 bg-[#00EAFF] rounded-full"></div>
@@ -88,7 +88,7 @@ export default function Projects() {
         </div>
       </div>
       
-      <div className="absolute bottom-8 left-8">
+      <div className="absolute bottom-8 right-8">
         <div className="relative w-24 h-24">
           <div className="absolute bottom-0 left-0 w-8 h-8 bg-[#00EAFF] rounded-full"></div>
           <div className="absolute bottom-6 left-6 w-6 h-6 bg-[#00EAFF] rounded-full"></div>
@@ -218,7 +218,7 @@ export default function Projects() {
 
         {/* View All Projects Button */}
         <div className="text-center">
-          <button className="inline-flex items-center space-x-3 px-10 py-4 bg-[#00EAFF] text-black rounded-xl hover:bg-[#00cccc] transition-all duration-300 font-bold shadow-lg hover:shadow-xl hover:scale-105 border-2 border-[#00EAFF] hover:border-[#00cccc]">
+          <button className="inline-flex items-center space-x-3 px-10 py-3 bg-[#00EAFF] text-black rounded-xl hover:bg-[#00cccc] transition-all duration-300 font-bold shadow-lg hover:shadow-xl hover:scale-105 border-2 border-[#00EAFF] hover:border-[#00cccc]">
             <span>View All Projects</span>
             <HiOutlineArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
           </button>

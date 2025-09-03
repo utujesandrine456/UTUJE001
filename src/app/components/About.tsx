@@ -1,30 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { HiOutlineMail, HiOutlinePhone, HiOutlineLocationMarker, HiOutlineDownload, HiOutlineLightBulb, HiOutlineCog, HiOutlineTemplate } from 'react-icons/hi';
-import { useEffect, useState } from 'react';
+import {HiOutlineDownload, HiOutlineLightBulb, HiOutlineCog, HiOutlineTemplate } from 'react-icons/hi';
 
 export default function About() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const element = document.getElementById('about');
-    if (element) {
-      observer.observe(element);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   const experiences = [
     {
       icon: <HiOutlineLightBulb className="w-10 h-10" />,
@@ -73,7 +52,7 @@ export default function About() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className={`text-center mb-16 transition-all duration-1000 `}>
+        <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-[#0a0a0a] mb-4">
             About <span className="text-[#fff]">Me</span>
           </h2>
@@ -86,7 +65,7 @@ export default function About() {
 
         <div className="grid lg:grid-cols-2">
           {/* Left - Profile Card */}
-          <div className={`ml-20 transition-all duration-1000 delay-200 `}>
+          <div className="ml-20">
            <div className="relative">
                   <Image
                     src="/Aboutimage.png"
@@ -99,10 +78,10 @@ export default function About() {
           </div>
 
           {/* Right - Experience Timeline */}
-          <div className={`transition-all duration-1000 delay-400 `}>
+          <div>
             <div className="relative">
               {experiences.map((exp, index) => (
-                <div key={index} className={`relative flex items-start space-x-4 transition-all duration-700 delay-${index * 200}`}>
+                <div key={index} className="relative flex items-start space-x-4">
                   {/* Icon */}
                   <div className="flex-shrink-0 w-15 h-15 p-3 bg-[#00EAFF] rounded-full flex items-center justify-center text-[#fff] hover-scale hover-glow transition-all duration-300">
                     {exp.icon}
@@ -132,7 +111,7 @@ export default function About() {
         </div>
 
         {/* Download Resume Button */}
-        <div className={`text-center mt-12 transition-all duration-1000 delay-600 `}>
+        <div className="text-center mt-12">
           <button className="btn-interactive inline-flex items-center space-x-2 px-8 py-3 bg-[#00EAFF] text-[#0a0a0a] rounded-lg hover:bg-[#00cccc] transition-all duration-300 font-medium shadow-lg hover:shadow-xl">
             <HiOutlineDownload size={20} className="animate-bounce-slow" />
             <span>Download Resume</span>
