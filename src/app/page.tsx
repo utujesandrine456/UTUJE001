@@ -39,6 +39,7 @@ export default function Portfolio() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  
   return (
     <main className="min-h-screen bg-[#0a0a0a]">
       <CustomCursor />

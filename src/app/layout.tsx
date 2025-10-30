@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
-import "./globals.css";
+import { Jost } from "next/font/google";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const jost = Jost({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
+
+import "./globals.css";
+
+
 
 export const metadata: Metadata = {
   title: "UWASE UTUJE Sandrine - Frontend Developer Portfolio",
@@ -21,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} font-poppins antialiased`}>
+      <body className={`${jost.className} font-poppins antialiased`}>
         {children}
       </body>
     </html>

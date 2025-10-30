@@ -33,28 +33,27 @@ body {
   position: fixed;
   pointer-events: none;
   z-index: 9999;
-  transition: all 0.1s ease;
-  mix-blend-mode: difference;
+  transition: width 0.15s ease, height 0.15s ease, transform 0.15s ease;
 }
 
 .custom-cursor.hover {
   width: 20px;
   height: 20px;
-  background: #00EAFF;
-  transform: scale(1.5);
+  background: #00eaff;
+  opacity: 0.2;
+  transform: scale(2);
 }
 
-/* Hide default cursor on interactive elements */
 button, a, .interactive, input, textarea, select {
   cursor: none !important;
 }
 
-/* Ensure Poppins font is applied to all text elements */
+
 h1, h2, h3, h4, h5, h6, p, span, div, button, input, textarea, label {
   font-family: var(--font-poppins), 'Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif';
 }
 
-/* Custom scrollbar */
+
 ::-webkit-scrollbar {
   width: 8px;
 }

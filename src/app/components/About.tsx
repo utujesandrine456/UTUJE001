@@ -1,9 +1,15 @@
 'use client';
 
 import Image from 'next/image';
-import {HiOutlineDownload, HiOutlineLightBulb, HiOutlineCog, HiOutlineTemplate } from 'react-icons/hi';
+import { HiOutlineDownload, HiOutlineLightBulb, HiOutlineCog, HiOutlineTemplate, HiOutlineShieldCheck} from 'react-icons/hi';
+import { motion, Variants } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 export default function About() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
+
   const experiences = [
     {
       icon: <HiOutlineLightBulb className="w-10 h-10" />,
@@ -23,12 +29,86 @@ export default function About() {
       period: "2024 - 2025",
       description: "Built responsive, user-friendly interfaces using modern frameworks and clean code. Focused on performance, accessibility, and seamless user experiences."
     }
+    ,
+    {
+      icon: <HiOutlineShieldCheck className="w-10 h-10" />,
+      title: "Cybersecurity Enthusiast",
+      period: "2024 - present",
+      description: "Developed and implemented security protocols, conducted vulnerability assessments, and ensured data protection. Focused on proactive threat mitigation and secure system design."
+    }
+
   ];
 
+
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants: Variants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50 
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const imageVariants: Variants = {
+    hidden: { 
+      opacity: 0, 
+      y: 60,
+      scale: 0.9
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const experienceVariants: Variants = {
+    hidden: { 
+      opacity: 0, 
+      x: 50,
+      y: 30
+    },
+    visible: (index) => ({
+      opacity: 1, 
+      x: 0,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        delay: index * 0.2,
+        ease: "easeOut"
+      }
+    })
+  };
+
   return (
-    <section id="about" className="py-20 bg-[#8cf1fa] relative overflow-hidden">
+    <section id="about" className="py-20 bg-[#ffffff] relative overflow-hidden" ref={ref}>
       {/* Decorative Vector Images */}
-      <div className="absolute top-8 right-8 w-24 h-24 animate-float">
+      <motion.div 
+        className="absolute top-8 right-8 w-24 h-24 animate-float"
+        initial={{ opacity: 0, scale: 0 }}
+        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
         <Image
           src="/Vector.png"
           alt="Decorative Vector"
@@ -36,9 +116,15 @@ export default function About() {
           height={96}
           className="w-full h-full object-contain"
         />
-      </div>
+      </motion.div>
       
-      <div className="absolute bottom-8 left-8 w-20 h-20 animate-float" style={{ animationDelay: '1s' }}>
+      <motion.div 
+        className="absolute bottom-8 left-8 w-20 h-20 animate-float" 
+        style={{ animationDelay: '1s' }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+      >
         <Image
           src="/Vector.png"
           alt="Decorative Vector"
@@ -46,42 +132,67 @@ export default function About() {
           height={80}
           className="w-full h-full object-contain"
         />
-      </div>
-
-      
+      </motion.div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-[#0a0a0a] mb-4">
-            About <span className="text-[#fff]">Me</span>
-          </h2>
-          <div className="w-24 h-2 rounded-2xl bg-[#fff] mx-auto mb-6"></div>
+        <motion.div 
+          className="text-center mb-16"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <motion.h2 
+            className="text-4xl font-bold text-[#0a0a0a] mb-4"
+            variants={itemVariants}
+          >
+            About <span className="text-[#00EAFF]">Me</span>
+          </motion.h2>
           
-          <p className="text-[#0a0a0a] text-md max-w-3xl mx-auto">
+          <motion.div 
+            className="w-24 h-[7px] rounded-2xl bg-[#000] mx-auto mb-6"
+            variants={itemVariants}
+          />
+          
+          <motion.p 
+            className="text-[#0a0a0a] text-lg max-w-3xl mx-auto"
+            variants={itemVariants}
+          >
             Get to know the person behind the codes & designs you see — a developer driven by creativity, curiosity, and a passion.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="grid lg:grid-cols-2">
+        <div className="grid lg:grid-cols-2 gap-12">
           {/* Left - Profile Card */}
-          <div className="ml-20">
-           <div className="relative">
-                  <Image
-                    src="/Aboutimage.png"
-                    alt="UWASE UTUJE Sandrine"
-                    width={350}
-                    height={480}
-                    className="transition-all duration-500"
-                  />
+          <motion.div 
+            className="ml-20"
+            variants={imageVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <div className="relative">
+              <Image
+                src="/Aboutimage.png"
+                alt="UWASE UTUJE Sandrine"
+                width={480}
+                height={460}
+                className="transition-all duration-500"
+              />
             </div>
-          </div>
+          </motion.div>
 
           {/* Right - Experience Timeline */}
           <div>
             <div className="relative">
               {experiences.map((exp, index) => (
-                <div key={index} className="relative flex items-start space-x-4">
+                <motion.div 
+                  key={index} 
+                  className="relative flex items-start space-x-4"
+                  custom={index}
+                  variants={experienceVariants}
+                  initial="hidden"
+                  animate={isInView ? "visible" : "hidden"}
+                >
                   {/* Icon */}
                   <div className="flex-shrink-0 w-15 h-15 p-3 bg-[#00EAFF] rounded-full flex items-center justify-center text-[#fff] hover-scale hover-glow transition-all duration-300">
                     {exp.icon}
@@ -95,7 +206,7 @@ export default function About() {
                     <p className="text-[#00EAFF] font-bold mb-2">
                       {exp.period}
                     </p>
-                    <p className="text-[#0a0a0a]/80 group-hover:text-[#0a0a0a] transition-colors duration-300">
+                    <p className="text-[#0a0a0a]/80 text-lg group-hover:text-[#0a0a0a] transition-colors duration-300">
                       {exp.description}
                     </p>
                   </div>
@@ -104,19 +215,24 @@ export default function About() {
                   {index < experiences.length - 1 && (
                     <div className="absolute left-10 top-14 w-1.5 h-40 bg-[#0a0a0a] group-hover:bg-[#00EAFF] transition-colors duration-300"></div>
                   )}
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
         </div>
 
         {/* Download Resume Button */}
-        <div className="text-center mt-12">
+        <motion.div 
+          className="text-center mt-12"
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
           <button className="btn-interactive inline-flex items-center space-x-2 px-8 py-3 bg-[#00EAFF] text-[#0a0a0a] rounded-lg hover:bg-[#00cccc] transition-all duration-300 font-medium shadow-lg hover:shadow-xl">
             <HiOutlineDownload size={20} className="animate-bounce-slow" />
             <span>Download Resume</span>
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

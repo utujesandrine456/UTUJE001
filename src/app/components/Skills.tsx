@@ -1,265 +1,158 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
+import { useEffect, useState, useRef } from 'react';
+import { FaHtml5, FaReact, FaNodeJs, FaGitAlt, FaDocker, FaJava } from 'react-icons/fa';
+import { 
+  SiNextdotjs, SiNestjs, SiMongodb, SiPostgresql, 
+  SiFigma, SiAdobephotoshop, SiAdobexd, SiDjango, SiTypescript 
+} from 'react-icons/si';
+import { LucidePaintbrush, LucideSettings } from "lucide-react";
 
 export default function Skills() {
   const [isVisible, setIsVisible] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("all"); // Default = all
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setIsVisible(true);
+    }, { threshold: 0.2 });
 
-    const element = document.getElementById('skills');
-    if (element) {
-      observer.observe(element);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  const skillCategories = [
-    {
-      title: "Frontend",
-      skills: [
-        { name: "HTML5 & CSS3", percentage: 95 },
-        { name: "React.js", percentage: 90 },
-        { name: "Next.js", percentage: 90 },
-        { name: "React Native", percentage: 50 }
-      ]
-    },
-    {
-      title: "Backend",
-      skills: [
-        { name: "Node.js", percentage: 95 },
-        { name: "Nest", percentage: 10 },
-        { name: "Java", percentage: 40 },
-        { name: "Python/Django", percentage: 10 }
-      ]
-    },
-    {
-      title: "Design",
-      skills: [
-        { name: "Figma", percentage: 95 },
-        { name: "UX Design", percentage: 95 },
-        { name: "Adobe XD", percentage: 75 },
-        { name: "Photoshop", percentage: 60 }
-      ]
-    }
-  ];
+  const skillCategories = {
+    frontend: [
+      { name: "HTML5 & CSS3", percentage: 95, color: "#E34F26", icon: <FaHtml5 /> },
+      { name: "React.js", percentage: 90, color: "#61DAFB", icon: <FaReact /> },
+      { name: "Next.js", percentage: 90, color: "#000000", icon: <SiNextdotjs /> },
+      { name: "React Native", percentage: 70, color: "#61DAFB", icon: <FaReact /> }
+    ],
+    backend: [
+      { name: "Node.js", percentage: 95, color: "#339933", icon: <FaNodeJs /> },
+      { name: "Nest.js", percentage: 70, color: "#E0234E", icon: <SiNestjs /> },
+      { name: "Java", percentage: 50, color: "#007396", icon: <FaJava /> },
+      { name: "Python/Django", percentage: 15, color: "#092E20", icon: <SiDjango /> }
+    ],
+    design: [
+      { name: "Figma", percentage: 95, color: "#F24E1E", icon: <SiFigma /> },
+      { name: "UX Design", percentage: 85, color: "#FF6B6B", icon: <LucidePaintbrush /> },
+      { name: "Adobe XD", percentage: 75, color: "#FF61F6", icon: <SiAdobexd /> },
+      { name: "Photoshop", percentage: 50, color: "#31A8FF", icon: <SiAdobephotoshop /> }
+    ]
+  };
+
+  
 
   const otherTechnologies = [
-    { name: "Git", icon: "/image 2.png" },
-    { name: "PostgreSQL", icon: "/image 3.png" },
-    { name: "MongoDB", icon: "/image 7.png" },
-    { name: "Docker", icon: "/image 5.png" },
-    { name: "REST APIs", icon: "/image 6.png" }
+    { name: "Git", icon: <FaGitAlt />, description: "Version Control" },
+    { name: "PostgreSQL", icon: <SiPostgresql />, description: "Database" },
+    { name: "MongoDB", icon: <SiMongodb />, description: "NoSQL Database" },
+    { name: "Docker", icon: <FaDocker />, description: "Containerization" },
+    { name: "REST APIs", icon: <LucideSettings />, description: "API Development" },
+    { name: "TypeScript", icon: <SiTypescript />, description: "Type Safety" }
   ];
 
-  return (
-    <section id="skills" className="py-20 bg-white relative overflow-hidden">
-      {/* Decorative Elements - Diagonal Circles */}
-      <div className="absolute top-8 right-8">
-        <div className="relative w-24 h-24">
-          <div className="absolute top-0 right-0 w-4 h-4 bg-[#000] rounded-full"></div>
-          <div className="absolute top-6 right-6 w-6 h-6 bg-[#000] rounded-full"></div>
-          <div className="absolute top-12 right-12 w-8 h-8 bg-[#000] rounded-full"></div>
-        </div>
-      </div>
-      
-      <div className="absolute bottom-8 left-8">
-        <div className="relative w-24 h-24">
-          <div className="absolute bottom-0 left-0 w-8 h-8 bg-[#000] rounded-full"></div>
-          <div className="absolute bottom-6 left-6 w-6 h-6 bg-[#000] rounded-full"></div>
-          <div className="absolute bottom-12 left-12 w-4 h-4 bg-[#000] rounded-full"></div>
-        </div>
-      </div>
+  const ProgressBar = ({ percentage, color, animated }: { percentage: number; color: string; animated: boolean }) => (
+    <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+      <div
+        className="h-full rounded-full transition-all duration-1000 ease-out"
+        style={{
+          width: animated ? `${percentage}%` : '0%',
+          backgroundColor: color
+        }}
+      />
+    </div>
+  );
 
+  const SkillCard = ({ skill, animated }: { skill: any; animated: boolean }) => (
+    <div className="group bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition-all duration-300 hover:scale-105 border border-white/20">
+      <div className="flex justify-between items-center mb-2">
+        <div className="flex items-center gap-2 text-white font-semibold text-sm">
+          <span className="text-xl">{skill.icon}</span>
+          {skill.name}
+        </div>
+        <span className="text-[#00EAFF] font-bold text-lg">
+          {animated ? skill.percentage : 0}%
+        </span>
+      </div>
+      <ProgressBar percentage={skill.percentage} color={skill.color} animated={animated} />
+    </div>
+  );
+
+  // Filtered skills
+  const displayedSkills =
+    activeCategory === "all"
+      ? [...skillCategories.frontend, ...skillCategories.backend, ...skillCategories.design]
+      : skillCategories[activeCategory as keyof typeof skillCategories];
+
+  return (
+    <section ref={sectionRef} id="skills" className="py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
         {/* Section Header */}
         <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-            <span className="text-[#00EAFF]">My</span> <span className="text-[#0a0a0a]">Skills</span>
+          <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#00EAFF] via-white to-cyan-300 bg-clip-text text-transparent">
+            Technical Expertise
           </h2>
-          <div className="w-24 h-1.5 rounded-2xl bg-[#00EAFF] mx-auto mb-6"></div>
-          <p className="text-[#0a0a0a] text-lg max-w-3xl mx-auto">
-            The tools and technologies I use to bring innovative, creative and impressive ideas to life
+          <div className="w-32 h-1.5 rounded-2xl bg-gradient-to-r from-[#00EAFF] to-cyan-300 mx-auto mb-6"></div>
+          <p className="text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed">
+            Mastering the tools and technologies that bring innovative ideas to life with precision and creativity.
           </p>
         </div>
 
-        {/* Main Skills Categories - Simple Three Column Layout */}
-        <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          {/* Frontend Skills - Circular Chart Design */}
-          <div className="bg-black rounded-xl shadow-lg border-4 border-[#00EAFF] p-8 hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
-            {/* Category Title */}
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-white mb-2">Frontend</h3>
-              <div className="w-16 h-1.5 rounded-2xl bg-[#00EAFF] mx-auto"></div>
-            </div>
-            
-            {/* Circular Skills Chart */}
-            <div className="relative w-80 h-80 mx-auto">
-              {/* Central Frontend Circle */}
-              <div className="absolute top-1/2 left-1/2 border-10 text-[#00C3BF]  border-[#ffffff85] transform -translate-x-1/2 -translate-y-1/2 w-28 h-28 bg-white rounded-full flex items-center justify-center z-20">
-                <span className="text-[#00EAFF] font-bold text-lg">Frontend</span>
-              </div>
-              
-              
-              <div className='my-2'>
-                {/* Top-Left Skill: HTML5 & CSS3 */}
-                <div className="absolute top-[10px] left-[10px] w-34 h-34 bg-[#00EAFF] rounded-tr-[70px] rounded-bl-[70px] flex flex-col items-center justify-center transform">
-                  <span className="text-black font-bold text-md">HTML5 & CSS3</span>
-                  <span className="text-white font-bold text-lg">95%</span>
-                </div>
-                
-                {/* Top-Right Skill: React.js */}
-                <div className="absolute top-[10px] right-[10px] w-34 h-34 bg-[#00EAFF] rounded-tl-[70px] rounded-br-[70px] flex flex-col items-center justify-center transform">
-                  <span className="text-black font-bold text-md">React.js</span>
-                  <span className="text-white font-bold text-lg">90%</span>
-                </div>
-              </div>
-              
-              
-              <div className=''>
-                  {/* Bottom-Left Skill: NEXT.js */}
-                  <div className="absolute bottom-[10px] left-[10px] w-34 h-34 bg-[#00EAFF] rounded-tl-[70px] rounded-br-[70px] flex flex-col items-center justify-center transform">
-                    <span className="text-black font-bold text-md">NEXT.js</span>
-                    <span className="text-white font-bold text-lg">90%</span>
-                  </div>
-                  
-                  {/* Bottom-Right Skill: React Native */}
-                  <div className="absolute bottom-[10px] right-[10px] w-34 h-34 bg-[#00EAFF] rounded-tr-[70px] rounded-bl-[70px] flex flex-col items-center justify-center transform">
-                    <span className="text-black font-bold text-md">React Native</span>
-                    <span className="text-white font-bold text-lg">50%</span>
-                  </div>
-              </div>
-              
-            </div>
-          </div>
-
-          {/* Backend Skills */}
-          <div className="bg-black rounded-xl shadow-lg border-4 border-[#00EAFF] p-8 hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
-            {/* Category Title */}
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-white mb-2">{skillCategories[1].title}</h3>
-              <div className="w-16 h-1.5 rounded-2xl bg-[#00EAFF] mx-auto"></div>
-            </div>
-            
-            {/* Circular Skills Chart */}
-            <div className="relative w-80 h-80 mx-auto">
-              {/* Central Backend Circle */}
-              <div className="absolute top-1/2 left-1/2 border-10 text-[#00C3BF] border-[#ffffff85] transform -translate-x-1/2 -translate-y-1/2 w-28 h-28 bg-white rounded-full flex items-center justify-center z-20">
-                <span className="text-[#00EAFF] font-bold text-lg">Backend</span>
-              </div>
-              
-              <div className='my-2'>
-                {/* Top-Left Skill: Node.js */}
-                <div className="absolute top-[10px] left-[10px] w-34 h-34 bg-[#00EAFF] rounded-tr-[70px] rounded-bl-[70px] flex flex-col items-center justify-center transform">
-                  <span className="text-black font-bold text-md">Node.js</span>
-                  <span className="text-white font-bold text-lg">95%</span>
-                </div>
-                
-                {/* Top-Right Skill: Nest */}
-                <div className="absolute top-[10px] right-[10px] w-34 h-34 bg-[#00EAFF] rounded-tl-[70px] rounded-br-[70px] flex flex-col items-center justify-center transform">
-                  <span className="text-black font-bold text-md">Nest</span>
-                  <span className="text-white font-bold text-lg">10%</span>
-                </div>
-              </div>
-              
-              <div className=''>
-                  {/* Bottom-Left Skill: Java */}
-                  <div className="absolute bottom-[10px] left-[10px] w-34 h-34 bg-[#00EAFF] rounded-tl-[70px] rounded-br-[70px] flex flex-col items-center justify-center transform">
-                    <span className="text-black font-bold text-md">Java</span>
-                    <span className="text-white font-bold text-lg">40%</span>
-                  </div>
-                  
-                  {/* Bottom-Right Skill: Python/Django */}
-                  <div className="absolute bottom-[10px] right-[10px] w-34 h-34 bg-[#00EAFF] rounded-tr-[70px] rounded-bl-[70px] flex flex-col items-center justify-center transform">
-                    <span className="text-black font-bold text-md">Python/Django</span>
-                    <span className="text-white font-bold text-lg">10%</span>
-                  </div>
-              </div>
-              
-            </div>
-          </div>
-
-          {/* Design Skills */}
-          <div className="bg-black rounded-xl shadow-lg border-4 border-[#00EAFF] p-8 hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
-            {/* Category Title */}
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-white mb-2">{skillCategories[2].title}</h3>
-              <div className="w-16 h-1.5 rounded-2xl bg-[#00EAFF] mx-auto"></div>
-            </div>
-            
-
-            {/* Circular Skills Chart */}
-            <div className="relative w-80 h-80 mx-auto">
-              {/* Central Design Circle */}
-              <div className="absolute top-1/2 left-1/2 border-10 text-[#00C3BF]  border-[#ffffff85] transform -translate-x-1/2 -translate-y-1/2 w-28 h-28 bg-white rounded-full flex items-center justify-center z-20">
-                <span className="text-[#00EAFF] font-bold text-lg">Design</span>
-              </div>
-              
-              <div className='my-2'>
-                {/* Top-Left Skill: Figma */}
-                <div className="absolute top-[10px] left-[10px] w-34 h-34 bg-[#00EAFF] rounded-tr-[70px] rounded-bl-[70px] flex flex-col items-center justify-center transform">
-                  <span className="text-black font-bold text-md">Figma</span>
-                  <span className="text-white font-bold text-lg">95%</span>
-                </div>
-                
-                {/* Top-Right Skill: UX Design */}
-                <div className="absolute top-[10px] right-[10px] w-34 h-34 bg-[#00EAFF] rounded-tl-[70px] rounded-br-[70px] flex flex-col items-center justify-center transform">
-                  <span className="text-black font-bold text-md">UX Design</span>
-                  <span className="text-white font-bold text-lg">95%</span>
-                </div>
-              </div>
-              
-              <div className=''>
-                  {/* Bottom-Left Skill: Adobe XD */}
-                  <div className="absolute bottom-[10px] left-[10px] w-34 h-34 bg-[#00EAFF] rounded-tl-[70px] rounded-br-[70px] flex flex-col items-center justify-center transform">
-                    <span className="text-black font-bold text-md">Adobe XD</span>
-                    <span className="text-white font-bold text-lg">75%</span>
-                  </div>
-                  
-                  {/* Bottom-Right Skill: Photoshop */}
-                  <div className="absolute bottom-[10px] right-[10px] w-34 h-34 bg-[#00EAFF] rounded-tr-[70px] rounded-bl-[70px] flex flex-col items-center justify-center transform">
-                    <span className="text-black font-bold text-md">Photoshop</span>
-                    <span className="text-white font-bold text-lg">60%</span>
-                  </div>
-              </div>
-              
-            </div>
+        {/* Tabs */}
+        <div className="flex justify-center mb-12">
+          <div className="bg-black/50 backdrop-blur-sm rounded-2xl p-2 border border-white/10 flex flex-wrap gap-2">
+            {["all", "frontend", "backend", "design"].map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`flex items-center px-5 py-2 rounded-xl font-semibold transition-all duration-300 ${
+                  activeCategory === cat
+                    ? 'bg-gradient-to-r from-[#00EAFF] to-cyan-500 text-black shadow-lg scale-105'
+                    : 'text-gray-300 hover:text-white hover:bg-white/5'
+                }`}
+              >
+                {cat === "all" ? "All Categories" :
+                 cat === "frontend" ? "Frontend" :
+                 cat === "backend" ? "Backend" : "UI/UX Design"}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Other Technologies */}
-        <div className={`text-center transition-all duration-1000 delay-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
-          <h3 className="text-3xl font-bold text-[#0a0a0a] mb-8">
-            Other Technologies I Work With
-          </h3>
-          
-          <div className="flex justify-center space-x-6">
+        {/* Skills Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 transition-all duration-500">
+          {displayedSkills.map((skill, index) => (
+            <SkillCard key={index} skill={skill} animated={isVisible} />
+          ))}
+        </div>
+
+        {/* Other Tech */}
+        <div className="bg-black/30 backdrop-blur-sm rounded-3xl p-8 border border-white/10 shadow-2xl">
+          <h4 className="text-xl font-bold text-white mb-6 text-center">Other Technologies</h4>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {otherTechnologies.map((tech, index) => (
               <div
                 key={index}
-                className="bg-[#00EAFF] w-32 h-30 rounded-lg px-6 py-6 shadow-md hover:scale-105 transition-transform duration-300 flex flex-col items-center space-y-2"
+                className="p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300 text-center hover:scale-105"
               >
-                <Image
-                  src={tech.icon}
-                  alt={`${tech.name} icon`}
-                  width={24}
-                  height={24}
-                  className="w-10 h-10"
-                />
-                <span className="text-[#0a0a0a] font-semibold">{tech.name}</span>
+                <div className="text-3xl text-cyan-400 mb-2">{tech.icon}</div>
+                <h4 className="text-white font-semibold text-md">{tech.name}</h4>
+                <p className="text-gray-400 text-sm">{tech.description}</p>
               </div>
             ))}
           </div>
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-16">
+          <p className="text-gray-400 text-md mb-6">Ready to bring your project to life?</p>
+          <button className="bg-gradient-to-r from-[#00EAFF] to-cyan-500 text-black font-bold px-8 py-4 rounded-2xl hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl">
+            Let's Work Together →
+          </button>
         </div>
       </div>
     </section>
