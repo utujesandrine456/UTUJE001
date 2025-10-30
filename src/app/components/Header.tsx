@@ -35,7 +35,7 @@ export default function Header({ activeSection, scrollToSection }: HeaderProps) 
               height={32}
               className="w-8 h-8"
             />
-            <span className="text-white font-bold text-xl">CodeAura</span>
+            <span className="text-white font-bold text-xl">UTUJE</span>
           </div>
 
 
