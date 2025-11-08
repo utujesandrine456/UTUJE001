@@ -11,8 +11,9 @@ import {
 import { 
   FaFacebook, 
   FaInstagram, 
-  FaTwitter, 
-  FaYoutube,
+  FaEnvelope,
+  FaGithub,
+  FaLinkedin,
   FaPaperPlane
 } from 'react-icons/fa';
 
@@ -28,11 +29,30 @@ export default function Contact() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        alert('Message sent successfully!');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        alert(data?.error || 'Something went wrong. Try again!');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Network error. Try again later.');
+    }
   };
+
 
   return (
     <section id="contact" className="py-20 bg-[#0a0a0a]">
@@ -86,18 +106,23 @@ export default function Contact() {
               <div className="pt-4">
                 <p className="text-[#0a0a0a] font-medium mb-3">Follow our social media</p>
                 <div className="flex space-x-4">
-                  <div className="w-10 h-10 bg-[#00EAFF] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#00cccc] transition-colors duration-300">
-                    <FaFacebook className="w-5 h-5 text-[#0a0a0a]" />
-                  </div>
-                  <div className="w-10 h-10 bg-[#00EAFF] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#00cccc] transition-colors duration-300">
-                    <FaInstagram className="w-5 h-5 text-[#0a0a0a]" />
-                  </div>
-                  <div className="w-10 h-10 bg-[#00EAFF] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#00cccc] transition-colors duration-300">
-                    <FaTwitter className="w-5 h-5 text-[#0a0a0a]" />
-                  </div>
-                  <div className="w-10 h-10 bg-[#00EAFF] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#00cccc] transition-colors duration-300">
-                    <FaYoutube className="w-5 h-5 text-[#0a0a0a]" />
-                  </div>
+                  <a href="https://www.instagram.com/utuje_001/">
+                    <div className="w-10 h-10 bg-[#00EAFF] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#00cccc] transition-colors duration-300">
+                      <FaInstagram className="w-5 h-5 text-[#0a0a0a]" />
+                    </div>
+                  </a>
+                  
+                  <a href='mailto:utujesandrine456@gmail.com'>
+                    <div className="w-10 h-10 bg-[#00EAFF] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#00cccc] transition-colors duration-300">
+                      <FaEnvelope className="w-5 h-5 text-[#0a0a0a]" />
+                    </div>
+                  </a>
+                    
+                  <a href="https://www.linkedin.com/in/uwase-utuje-sandrine-5842b8386/">
+                    <div className="w-10 h-10 bg-[#00EAFF] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#00cccc] transition-colors duration-300">
+                      <FaLinkedin className="w-5 h-5 text-[#0a0a0a]" />
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>
@@ -112,7 +137,7 @@ export default function Contact() {
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-[#0a0a0a] font-medium mb-2 flex items-center">
+                  <label htmlFor="name" className="text-[#0a0a0a] font-medium mb-2 flex items-center">
                     <HiOutlineUser className="w-4 h-4 mr-2 text-[#00EAFF]" />
                     Name:
                   </label>
@@ -129,7 +154,7 @@ export default function Contact() {
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-[#0a0a0a] font-medium mb-2 flex items-center">
+                  <label htmlFor="email" className="text-[#0a0a0a] font-medium mb-2 flex items-center">
                     <HiOutlineMail className="w-4 h-4 mr-2 text-[#00EAFF]" />
                     Email:
                   </label>
@@ -146,7 +171,7 @@ export default function Contact() {
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block text-[#0a0a0a] font-medium mb-2 flex items-center">
+                  <label htmlFor="message" className=" text-[#0a0a0a] font-medium mb-2 flex items-center">
                     <HiOutlineDocumentText className="w-4 h-4 mr-2 text-[#00EAFF]" />
                     Message:
                   </label>

@@ -19,7 +19,7 @@ export default function CustomCursor() {
     document.addEventListener('mouseenter', handleMouseEnter);
     document.addEventListener('mouseleave', handleMouseLeave);
 
-    // Add hover detection for interactive elements
+
     const interactiveElements = document.querySelectorAll('button, a, .interactive, input, textarea');
     
     interactiveElements.forEach(element => {

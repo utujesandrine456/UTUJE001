@@ -102,7 +102,7 @@ export default function About() {
 
   return (
     <section id="about" className="py-20 bg-[#ffffff] relative overflow-hidden" ref={ref}>
-      {/* Decorative Vector Images */}
+
       <motion.div 
         className="absolute top-8 right-8 w-24 h-24 animate-float"
         initial={{ opacity: 0, scale: 0 }}
@@ -135,7 +135,7 @@ export default function About() {
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
+
         <motion.div 
           className="text-center mb-16"
           variants={containerVariants}
@@ -143,7 +143,7 @@ export default function About() {
           animate={isInView ? "visible" : "hidden"}
         >
           <motion.h2 
-            className="text-4xl font-bold text-[#0a0a0a] mb-4"
+            className="text-5xl font-bold text-[#0a0a0a] mb-4"
             variants={itemVariants}
           >
             About <span className="text-[#00EAFF]">Me</span>
@@ -163,7 +163,7 @@ export default function About() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Left - Profile Card */}
+
           <motion.div 
             className="ml-20"
             variants={imageVariants}
@@ -181,7 +181,6 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Right - Experience Timeline */}
           <div>
             <div className="relative">
               {experiences.map((exp, index) => (

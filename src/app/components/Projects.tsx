@@ -13,27 +13,9 @@ export default function Projects() {
     {
       title: "E-Commerce Platform",
       description: "A complete online shopping solution with Inventory management, payment processing, and analytics.",
-      image: "/Rectangle 50.png",
+      image: "/image.png",
       category: "E-Commerce",
       technologies: ["React", "Node.js", "MongoDB"],
-      liveUrl: "#",
-      githubUrl: "#"
-    },
-    {
-      title: "Health & Fitness App",
-      description: "Web Application that creates personalized workout plans and nutrition with AI recommendations.",
-      image: "/Rectangle 51.png",
-      category: "Health & Fitness",
-      technologies: ["React", "Python", "AI/ML"],
-      liveUrl: "#",
-      githubUrl: "#"
-    },
-    {
-      title: "NGWINO App",
-      description: "An application that helps you repay loans using profits gained from investments in NGWINO App.",
-      image: "/Rectangle 52.png",
-      category: "Trading & Finance",
-      technologies: ["React.js", "MongoDB", "Django"],
       liveUrl: "#",
       githubUrl: "#"
     },
@@ -49,7 +31,7 @@ export default function Projects() {
     {
       title: "Wellnest",
       description: "A wellness and mental health application providing meditation, mood tracking, and counseling services.",
-      image: "/1.webp",
+      image: "/Wellnest.png",
       category: "Health & Wellness",
       technologies: ["React", "Node.js", "PostgreSQL"],
       liveUrl: "#",
@@ -68,14 +50,14 @@ export default function Projects() {
       title: "FoodSaver",
       description: "A smart food management system to reduce waste and suggest recipes.",
       image: "/food.png",
-      category: "E-Commerce",
+      category: "Health & Wellness",
       technologies: ["Vue.js", "Node.js", "MongoDB"],
       liveUrl: "#",
       githubUrl: "#"
     },
   ];
 
-  const categories = ["All", "E-Commerce", "Health & Fitness", "Trading & Finance", "Health & Wellness", "Education", "Transport"];
+  const categories = ["All", "E-Commerce", "Trading & Finance", "Health & Wellness", "Transport"];
 
   const filteredProjects = selectedCategory === "All"
     ? projects
@@ -129,34 +111,35 @@ export default function Projects() {
           ))}
         </div>
 
+        
+        
         {/* Carousel */}
         <div className="relative mb-12">
           <div className="relative overflow-hidden rounded-3xl">
-            <div
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-            >
+            <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
               {filteredProjects.map((project, index) => (
-                <div key={index} className="w-full flex-shrink-0">
-                  <div className="grid lg:grid-cols-2 gap-8 items-center p-8">
-                    {/* Project Image */}
-                    <div className="relative h-96 lg:h-[500px] rounded-2xl overflow-hidden">
-                      <Image src={project.image} alt={project.title} fill className="object-cover"/>
-                      <div className="absolute top-4 left-4">
-                        <span className="px-4 py-2 bg-[#00EAFF] text-black text-sm font-bold rounded-full shadow-lg">
-                          {project.category}
-                        </span>
-                      </div>
+                <div key={index} className="w-full flex-shrink-0 p-4">
+                  <div className="grid lg:grid-cols-2 gap-8 items-center">
+                    
+                    {/* Image Section */}
+                    <div className="relative w-full h-80 rounded-2xl overflow-hidden">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover"
+                        priority
+                      />
                     </div>
 
-                    {/* Project Info */}
-                    <div className="space-y-6">
+                    {/* Details Section */}
+                    <div className="space-y-6 text-center md:text-left">
                       <h3 className="text-3xl lg:text-4xl font-bold text-white">{project.title}</h3>
                       <p className="text-white/80 text-lg">{project.description}</p>
 
                       <div>
                         <h4 className="text-white font-semibold mb-2">Technologies:</h4>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2 justify-center">
                           {project.technologies.map((tech, i) => (
                             <span key={i} className="px-3 py-1 bg-[#00EAFF]/20 text-[#00EAFF] rounded-full text-sm border border-[#00EAFF]/30">
                               {tech}
@@ -165,11 +148,12 @@ export default function Projects() {
                         </div>
                       </div>
 
-                      <div className="flex gap-4">
-                        <a href={project.liveUrl} className="px-6 py-3 bg-[#00EAFF] text-black rounded-xl font-semibold hover:bg-[#00cccc] flex items-center gap-2">
+                      {/* Buttons */}
+                      <div className="flex flex-wrap gap-4 pt-4 justify-center">
+                        <a href={project.liveUrl} className="px-6 py-3 bg-[#00EAFF] text-black rounded-xl font-semibold hover:bg-[#00cccc] flex items-center gap-2 transition">
                           <FaExternalLinkAlt /> Live Demo
                         </a>
-                        <a href={project.githubUrl} className="px-6 py-3 border-2 border-[#00EAFF] text-[#00EAFF] rounded-xl font-semibold hover:bg-[#00EAFF]/10 flex items-center gap-2">
+                        <a href={project.githubUrl} className="px-6 py-3 border-2 border-[#00EAFF] text-[#00EAFF] rounded-xl font-semibold hover:bg-[#00EAFF]/10 flex items-center gap-2 transition">
                           <FaGithub /> View Code
                         </a>
                       </div>
@@ -180,14 +164,27 @@ export default function Projects() {
             </div>
           </div>
 
-          {/* Arrows */}
-          <button onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-[#00EAFF] text-black rounded-full flex items-center justify-center hover:bg-[#00cccc]">
-            <FaChevronLeft />
-          </button>
-          <button onClick={nextSlide} className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-[#00EAFF] text-black rounded-full flex items-center justify-center hover:bg-[#00cccc]">
-            <FaChevronRight />
-          </button>
+          {/* Navigation Buttons */}
+          <div className="absolute inset-0 flex justify-between items-center px-4">
+            <button
+              onClick={prevSlide}
+              className="w-12 h-12 bg-[#00EAFF] text-black rounded-full flex items-center justify-center hover:bg-[#00cccc] transition"
+            >
+              <FaChevronLeft />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="w-12 h-12 bg-[#00EAFF] text-black rounded-full flex items-center justify-center hover:bg-[#00cccc] transition"
+            >
+              <FaChevronRight />
+            </button>
+          </div>
         </div>
+
+
+            
+          
+
       </div>
     </section>
   );

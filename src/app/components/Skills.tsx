@@ -26,11 +26,13 @@ export default function Skills() {
     frontend: [
       { name: "HTML5 & CSS3", percentage: 95, color: "#E34F26", icon: <FaHtml5 /> },
       { name: "React.js", percentage: 90, color: "#61DAFB", icon: <FaReact /> },
+      { name: "React.ts", percentage: 90, color: "#1DAF5F", icon: <FaReact /> },
       { name: "Next.js", percentage: 90, color: "#000000", icon: <SiNextdotjs /> },
-      { name: "React Native", percentage: 70, color: "#61DAFB", icon: <FaReact /> }
+      { name: "React Native", percentage: 70, color: "#00235B", icon: <FaReact /> }
     ],
     backend: [
       { name: "Node.js", percentage: 95, color: "#339933", icon: <FaNodeJs /> },
+      { name: "Express.js", percentage: 98, color: "#339", icon: <FaNodeJs /> },
       { name: "Nest.js", percentage: 70, color: "#E0234E", icon: <SiNestjs /> },
       { name: "Java", percentage: 50, color: "#007396", icon: <FaJava /> },
       { name: "Python/Django", percentage: 15, color: "#092E20", icon: <SiDjango /> }
@@ -93,7 +95,7 @@ export default function Skills() {
         
         {/* Section Header */}
         <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-[#00EAFF] via-white to-cyan-300 bg-clip-text text-transparent">
+          <h2 className="text-5xl font-bold mb-4 bg-white bg-clip-text text-transparent">
             Technical Expertise
           </h2>
           <div className="w-32 h-1.5 rounded-2xl bg-gradient-to-r from-[#00EAFF] to-cyan-300 mx-auto mb-6"></div>
@@ -150,9 +152,11 @@ export default function Skills() {
         {/* CTA */}
         <div className="text-center mt-16">
           <p className="text-gray-400 text-md mb-6">Ready to bring your project to life?</p>
-          <button className="bg-gradient-to-r from-[#00EAFF] to-cyan-500 text-black font-bold px-8 py-4 rounded-2xl hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl">
-            Let's Work Together →
-          </button>
+          <a href="#contact">
+            <button className="bg-gradient-to-r from-[#00EAFF] to-cyan-500 text-black font-bold px-8 py-4 rounded-2xl hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl">
+              Let's Work Together →
+            </button>
+          </a>
         </div>
       </div>
     </section>
