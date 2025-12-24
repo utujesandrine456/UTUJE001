@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
-
 import { FaChevronLeft, FaChevronRight, FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 
 export default function Projects() {
@@ -11,57 +10,46 @@ export default function Projects() {
 
   const projects = [
     {
-      title: "E-Commerce Platform",
+      title: "ZERO (E-Commerce Platform)",
       description: "A complete online shopping solution with Inventory management, payment processing, and analytics.",
-      image: "/image.png",
+      image: "/ZERO.png",
       category: "E-Commerce",
       technologies: ["React", "Node.js", "MongoDB"],
-      liveUrl: "https://tradewise-cyan.vercel.app/",
-      githubUrl: "#"
+      liveUrl: "https://zero-pink.vercel.app/",
+      githubUrl: "https://github.com/utujesandrine456/ZERO"
     },
     {
-      title: "TradeWise",
+      title: "TradeWise (Trading & Finance)",
       description: "A comprehensive trading platform with real-time market data, portfolio management, and advanced analytics.",
       image: "/TradeWise_overview.png",
       category: "Trading & Finance",
       technologies: ["React.js", "Nest.js", "Prisma"],
       liveUrl: "https://tradewise-cyan.vercel.app/",
-      githubUrl: "#"
+      githubUrl: "https://github.com/utujesandrine456/TradeWise"
     },
     {
-      title: "Wellnest",
-      description: "A wellness and mental health application providing meditation, mood tracking, and counseling services.",
-      image: "/Wellnest.png",
-      category: "Health & Wellness",
-      technologies: ["React", "Node.js", "PostgreSQL"],
-      liveUrl: "https://tradewise-cyan.vercel.app/",
-      githubUrl: "#"
-    },
-    {
-      title: "Terra",
+      title: "Lumina (Agriculture & Transport)",
       description: "A transport solution for booking rides, tracking drivers, and secure payments.",
-      image: "/ride.png",
+      image: "/Lumina.png",
       category: "Transport",
       technologies: ["React Native", "Express.js"],
       liveUrl: "https://tradewise-cyan.vercel.app/",
-      githubUrl: "#"
+      githubUrl: "https://github.com/utujesandrine456/Lumina"
     },
     {
-      title: "Aroena",
+      title: "Aroena (Hotel Management System)",
       description: "A smart food management system to reduce waste and suggest recipes.",
-      image: "/food.png",
+      image: "/Aroena.png",
       category: "Health & Wellness",
       technologies: ["Vue.js", "Node.js", "MongoDB"],
-      liveUrl: "https://tradewise-cyan.vercel.app/",
-      githubUrl: "#"
+      liveUrl: "https://tradewise-cyan.vercel.app/", 
+      githubUrl: "https://github.com/utujesandrine456/Aroena"
     },
   ];
 
   const categories = ["All", "E-Commerce", "Trading & Finance", "Health & Wellness", "Transport"];
 
-  const filteredProjects = selectedCategory === "All"
-    ? projects
-    : projects.filter(p => p.category === selectedCategory);
+  const filteredProjects = selectedCategory === "All" ? projects : projects.filter(p => p.category === selectedCategory);
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % filteredProjects.length);
@@ -78,12 +66,9 @@ export default function Projects() {
     return () => clearInterval(interval);
   }, [nextSlide]);
 
-
   return (
     <section id="projects" className="py-20 bg-black relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-        {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
             <span className="text-[#00EAFF]">Featured</span> <span className="text-white">Projects</span>
@@ -94,7 +79,6 @@ export default function Projects() {
           </p>
         </div>
 
-        {/* Category Tabs */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           {categories.map((cat, index) => (
             <button
@@ -110,35 +94,33 @@ export default function Projects() {
           ))}
         </div>
 
-
-
-        {/* Carousel */}
         <div className="relative mb-12">
           <div className="relative overflow-hidden rounded-3xl">
             <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
               {filteredProjects.map((project, index) => (
-                <div key={index} className="w-full shrink-0 p-4">
-                  <div className="grid lg:grid-cols-2 gap-8 items-center">
-
-                    {/* Image Section */}
-                    <div className="relative w-full h-80 rounded-2xl overflow-hidden">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover"
-                        priority
-                      />
+                <div key={index} className="w-full shrink-0 px-4">
+                  <div className="grid lg:grid-cols-2 gap-8 items-center bg-white/5 backdrop-blur-sm rounded-3xl p-6 lg:p-8 border border-white/10">
+                    <div className="relative w-full h-64 lg:h-80 rounded-2xl overflow-hidden bg-black/50">
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-contain p-4"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          priority={index === currentSlide}
+                        />
+                      </div>
                     </div>
 
-                    {/* Details Section */}
+                    {/* Content Container */}
                     <div className="space-y-6 text-center md:text-left">
                       <h3 className="text-3xl lg:text-4xl font-bold text-white">{project.title}</h3>
                       <p className="text-white/80 text-lg">{project.description}</p>
 
                       <div>
                         <h4 className="text-white font-semibold mb-2">Technologies:</h4>
-                        <div className="flex flex-wrap gap-2 justify-center">
+                        <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                           {project.technologies.map((tech, i) => (
                             <span key={i} className="px-3 py-1 bg-[#00EAFF]/20 text-[#00EAFF] rounded-full text-sm border border-[#00EAFF]/30">
                               {tech}
@@ -147,12 +129,22 @@ export default function Projects() {
                         </div>
                       </div>
 
-                      {/* Buttons */}
-                      <div className="flex flex-wrap gap-4 pt-4 justify-center">
-                        <a href={project.liveUrl} className="px-6 py-3 bg-[#00EAFF] text-black rounded-xl font-semibold hover:bg-[#00cccc] flex items-center gap-2 transition">
+                      <div className="flex flex-wrap gap-4 pt-4 justify-center md:justify-start">
+                        <a 
+                          href={project.liveUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="px-6 py-3 bg-[#00EAFF] text-black rounded-xl font-semibold hover:bg-[#00cccc] flex items-center gap-2 transition transform hover:scale-105 active:scale-95"
+                        >
                           <FaExternalLinkAlt /> Live Demo
                         </a>
-                        <a href={project.githubUrl} className="px-6 py-3 border-2 border-[#00EAFF] text-[#00EAFF] rounded-xl font-semibold hover:bg-[#00EAFF]/10 flex items-center gap-2 transition">
+                        
+                        <a 
+                          href={project.githubUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="px-6 py-3 border-2 border-[#00EAFF] text-[#00EAFF] rounded-xl font-semibold hover:bg-[#00EAFF]/10 flex items-center gap-2 transition transform hover:scale-105 active:scale-95"
+                        >
                           <FaGithub /> View Code
                         </a>
                       </div>
@@ -163,27 +155,32 @@ export default function Projects() {
             </div>
           </div>
 
-          {/* Navigation Buttons */}
-          <div className="absolute inset-0 flex justify-between items-center px-4">
+         <div className="absolute inset-0 flex justify-between items-center px-4 pointer-events-none -translate-y-1/2 top-1/2">
             <button
               onClick={prevSlide}
-              className="w-12 h-12 bg-[#00EAFF] text-black rounded-full flex items-center justify-center hover:bg-[#00cccc] transition"
+              className="w-12 h-12 bg-[#00EAFF] text-black rounded-full flex items-center justify-center hover:bg-[#00cccc] transition pointer-events-auto shadow-lg transform hover:scale-110 active:scale-95"
             >
               <FaChevronLeft />
             </button>
             <button
               onClick={nextSlide}
-              className="w-12 h-12 bg-[#00EAFF] text-black rounded-full flex items-center justify-center hover:bg-[#00cccc] transition"
+              className="w-12 h-12 bg-[#00EAFF] text-black rounded-full flex items-center justify-center hover:bg-[#00cccc] transition pointer-events-auto shadow-lg transform hover:scale-110 active:scale-95"
             >
               <FaChevronRight />
             </button>
           </div>
         </div>
 
-
-
-
-
+        <div className="flex justify-center gap-2 mt-8">
+          {filteredProjects.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all ${index === currentSlide ? 'bg-[#00EAFF] w-8' : 'bg-white/30 hover:bg-white/50'}`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

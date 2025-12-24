@@ -43,7 +43,7 @@ export default function Hero({ scrollToSection }: HeroProps) {
   }, [displayText, isDeleting, currentRoleIndex]);
 
   return (
-    <section id="home" className="min-h-screen bg-[#0a0a0a] flex items-center relative overflow-hidden pt-16">
+    <section id="home" className="min-h-screen bg-[#0a0a0a] flex items-center relative overflow-hidden pt-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <motion.div className="space-y-6 sm:space-y-8">
