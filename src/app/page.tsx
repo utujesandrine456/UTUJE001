@@ -9,6 +9,7 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
+import Testimonials from './components/Testimonials';
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('home');
@@ -48,6 +49,7 @@ export default function Portfolio() {
       <About />
       <Skills />
       <Projects />
+      <Testimonials />
       <Contact />
       <Footer />
     </main>

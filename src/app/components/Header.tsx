@@ -2,9 +2,7 @@
 
 import { useState } from 'react';
 import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi';
-import { Sail } from 'next/font/google';
-
-const sail = Sail({ subsets: ['latin'], weight: '400' });
+import Image from 'next/image';
 
 
 interface HeaderProps {
@@ -33,7 +31,6 @@ export default function Header({ activeSection, scrollToSection }: HeaderProps) 
           <div className="flex items-center space-x-2">
             <span className={`text-white font-bold text-2xl`}>UTUJE</span>
           </div>
-
 
           <nav className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
@@ -71,7 +68,7 @@ export default function Header({ activeSection, scrollToSection }: HeaderProps) 
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => {scrollToSection(item.id); setIsMenuOpen(false)}}
                   className={`w-full text-left px-4 py-2 rounded-lg transition-all duration-300 ${
                     activeSection === item.id
                       ? 'bg-[#00EAFF] text-black font-semibold'

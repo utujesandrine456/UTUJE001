@@ -1,16 +1,13 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { FaHtml5, FaReact, FaNodeJs, FaGitAlt, FaDocker, FaJava } from 'react-icons/fa';
-import { 
-  SiNextdotjs, SiNestjs, SiMongodb, SiPostgresql, 
-  SiFigma, SiAdobephotoshop, SiAdobexd, SiDjango, SiTypescript 
-} from 'react-icons/si';
+import { FaHtml5, FaReact, FaNodeJs, FaGitAlt, FaDocker, FaJava, FaSwift} from 'react-icons/fa';
+import { SiNextdotjs, SiNestjs, SiMongodb, SiPostgresql, SiFigma, SiAdobephotoshop, SiAdobexd, SiDjango, SiTypescript } from 'react-icons/si';
 import { LucidePaintbrush, LucideSettings } from "lucide-react";
 
 export default function Skills() {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeCategory, setActiveCategory] = useState("all"); // Default = all
+  const [activeCategory, setActiveCategory] = useState("all");
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -28,7 +25,8 @@ export default function Skills() {
       { name: "React.js", percentage: 90, color: "#61DAFB", icon: <FaReact /> },
       { name: "React.ts", percentage: 90, color: "#1DAF5F", icon: <FaReact /> },
       { name: "Next.js", percentage: 90, color: "#000000", icon: <SiNextdotjs /> },
-      { name: "React Native", percentage: 70, color: "#00235B", icon: <FaReact /> }
+      { name: "React Native", percentage: 70, color: "#00235B", icon: <FaReact /> },
+      { name: "Swift", percentage: 50, color: "#00235B", icon: <FaSwift /> }
     ],
     backend: [
       { name: "Node.js", percentage: 95, color: "#339933", icon: <FaNodeJs /> },
@@ -90,7 +88,7 @@ export default function Skills() {
       : skillCategories[activeCategory as keyof typeof skillCategories];
 
   return (
-    <section ref={sectionRef} id="skills" className="py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
+    <section ref={sectionRef} id="skills" className="py-20 bg-linear-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
@@ -98,7 +96,7 @@ export default function Skills() {
           <h2 className="text-5xl font-bold mb-4 bg-white bg-clip-text text-transparent">
             Technical Expertise
           </h2>
-          <div className="w-32 h-1.5 rounded-2xl bg-gradient-to-r from-[#00EAFF] to-cyan-300 mx-auto mb-6"></div>
+          <div className="w-32 h-1.5 rounded-2xl bg-linear-to-r from-[#00EAFF] to-cyan-300 mx-auto mb-6"></div>
           <p className="text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed">
             Mastering the tools and technologies that bring innovative ideas to life with precision and creativity.
           </p>
@@ -113,7 +111,7 @@ export default function Skills() {
                 onClick={() => setActiveCategory(cat)}
                 className={`flex items-center px-5 py-2 rounded-xl font-semibold transition-all duration-300 ${
                   activeCategory === cat
-                    ? 'bg-gradient-to-r from-[#00EAFF] to-cyan-500 text-black shadow-lg scale-105'
+                    ? 'bg-linear-to-r from-[#00EAFF] to-cyan-500 text-black shadow-lg scale-105'
                     : 'text-gray-300 hover:text-white hover:bg-white/5'
                 }`}
               >
@@ -124,12 +122,22 @@ export default function Skills() {
             ))}
           </div>
         </div>
-
-        {/* Skills Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 transition-all duration-500">
-          {displayedSkills.map((skill, index) => (
-            <SkillCard key={index} skill={skill} animated={isVisible} />
-          ))}
+        
+        {/* Skills */}
+        <div className="bg-black/30 backdrop-blur-sm rounded-3xl p-8 border border-white/10 shadow-2xl my-10 ">
+          <h4 className="text-xl font-bold text-white mb-6 text-center">Explore My Skills</h4>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            {displayedSkills.map((skill, index) => (
+              <div
+                key={index}
+                className="p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300 text-center hover:scale-105"
+              >
+                <div className="text-3xl text-cyan-400 mb-2">{skill.icon}</div>
+                <h4 className="text-white font-semibold text-md">{skill.name}</h4>
+                {/* <p className="text-gray-400 text-sm">{skill.description}</p> */}
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Other Tech */}
@@ -153,7 +161,7 @@ export default function Skills() {
         <div className="text-center mt-16">
           <p className="text-gray-400 text-md mb-6">Ready to bring your project to life?</p>
           <a href="#contact">
-            <button className="bg-gradient-to-r from-[#00EAFF] to-cyan-500 text-black font-bold px-8 py-4 rounded-2xl hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl">
+            <button className="bg-linear-to-r from-[#00EAFF] to-cyan-500 text-black font-bold px-8 py-4 rounded-2xl hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl">
               Let's Work Together →
             </button>
           </a>

@@ -16,7 +16,7 @@ export default function Projects() {
       image: "/image.png",
       category: "E-Commerce",
       technologies: ["React", "Node.js", "MongoDB"],
-      liveUrl: "#",
+      liveUrl: "https://tradewise-cyan.vercel.app/",
       githubUrl: "#"
     },
     {
@@ -25,7 +25,7 @@ export default function Projects() {
       image: "/TradeWise_overview.png",
       category: "Trading & Finance",
       technologies: ["React.js", "Nest.js", "Prisma"],
-      liveUrl: "#",
+      liveUrl: "https://tradewise-cyan.vercel.app/",
       githubUrl: "#"
     },
     {
@@ -34,7 +34,7 @@ export default function Projects() {
       image: "/Wellnest.png",
       category: "Health & Wellness",
       technologies: ["React", "Node.js", "PostgreSQL"],
-      liveUrl: "#",
+      liveUrl: "https://tradewise-cyan.vercel.app/",
       githubUrl: "#"
     },
     {
@@ -43,16 +43,16 @@ export default function Projects() {
       image: "/ride.png",
       category: "Transport",
       technologies: ["React Native", "Express.js"],
-      liveUrl: "#",
+      liveUrl: "https://tradewise-cyan.vercel.app/",
       githubUrl: "#"
     },
     {
-      title: "FoodSaver",
+      title: "Aroena",
       description: "A smart food management system to reduce waste and suggest recipes.",
       image: "/food.png",
       category: "Health & Wellness",
       technologies: ["Vue.js", "Node.js", "MongoDB"],
-      liveUrl: "#",
+      liveUrl: "https://tradewise-cyan.vercel.app/",
       githubUrl: "#"
     },
   ];
@@ -118,7 +118,7 @@ export default function Projects() {
           <div className="relative overflow-hidden rounded-3xl">
             <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
               {filteredProjects.map((project, index) => (
-                <div key={index} className="w-full flex-shrink-0 p-4">
+                <div key={index} className="w-full shrink-0 p-4">
                   <div className="grid lg:grid-cols-2 gap-8 items-center">
                     
                     {/* Image Section */}

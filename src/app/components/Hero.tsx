@@ -133,36 +133,7 @@ useEffect(() => {
 
   return (
     <section id="home" className="min-h-screen bg-[#0a0a0a] flex items-center relative overflow-hidden pt-16">
-
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {backgroundElements.map((el, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-3 h-3 bg-[#00EAFF] rounded-full opacity-20"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ 
-              opacity: 0.2, 
-              scale: 1,
-              y: [0, -20, 0],
-            }}
-            transition={{
-              opacity: { delay: el.delay, duration: 0.5 },
-              scale: { delay: el.delay, duration: 0.5 },
-              y: {
-                delay: el.delay + 0.5,
-                duration: el.duration,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }
-            }}
-            style={{
-              left: el.left,
-              top: el.top,
-            }}
-          />
-        ))}
-      </div>
-
+    
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -211,17 +182,16 @@ useEffect(() => {
           </motion.div>
 
           {/* Right Image */}
-          <motion.div className="flex justify-center lg:justify-end">
+          <motion.div className="flex justify-center lg:justify-end overflow-hidden relative top-30 left-30 ">
             <Image
               src="/Figure.png"
               alt="UWASE UTUJE Sandrine"
-              width={400}
+              width={800}
               height={400}
               className="hidden lg:block rounded-xl shadow-2xl"
             />
           </motion.div>
         </div>
-
       </div>
 
       {/* Scroll indicator */}
