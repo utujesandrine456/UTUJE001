@@ -4,14 +4,12 @@ import Image from 'next/image';
 import { HiOutlineArrowRight, HiOutlineMail } from 'react-icons/hi';
 import { FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 interface HeroProps {
   scrollToSection: (sectionId: string) => void;
 }
 
-
-// Variants removed due to non-usage in the current component structure
 
 const roles = ['Frontend Developer', 'UI/UX Designer', 'Backend Developer', 'CyberSecurity Enthusiast'];
 
@@ -83,12 +81,45 @@ export default function Hero({ scrollToSection }: HeroProps) {
 
             {/* Social Icons */}
             <motion.div className="flex justify-center sm:justify-start gap-6 mt-4">
-              {[FaLinkedin, FaGithub, FaInstagram, HiOutlineMail].map((Icon, i) => (
-                <motion.a key={i} href="#" className="text-[#00EAFF] hover:text-white text-2xl">
-                  <Icon />
-                </motion.a>
-              ))}
+              <motion.a
+                key="linkedin"
+                href="https://www.linkedin.com/in/uwase-utuje-sandrine-5842b8386"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#00EAFF] hover:text-white text-2xl"
+              >
+                <FaLinkedin />
+              </motion.a>
+
+              <motion.a
+                key="github"
+                href="https://github.com/utujesandrine456"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#00EAFF] hover:text-white text-2xl"
+              >
+                <FaGithub />
+              </motion.a>
+
+              <motion.a
+                key="instagram"
+                href="https://www.instagram.com/utuje_001/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#00EAFF] hover:text-white text-2xl"
+              >
+                <FaInstagram />
+              </motion.a>
+
+              <motion.a
+                key="email"
+                href="mailto:utujesandrine456@gmail.com"
+                className="text-[#00EAFF] hover:text-white text-2xl"
+              >
+                <HiOutlineMail />
+              </motion.a>
             </motion.div>
+
           </motion.div>
 
           {/* Right Image */}
