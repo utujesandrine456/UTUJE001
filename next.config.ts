@@ -1,17 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Disable strict mode if causing issues
-  reactStrictMode: false,
-  
-  // Optimize for Vercel
-  swcMinify: true,
-  
-  // Disable ESLint during build
+  reactStrictMode: true,
+  // Remove swcMinify for Next.js 15 - it's enabled by default
   eslint: {
     ignoreDuringBuilds: true,
   },
-  
-  // Disable TypeScript errors during build
   typescript: {
     ignoreBuildErrors: true,
   }

@@ -1,9 +1,9 @@
 'use client';
 
-import Image from 'next/image';
-import { 
-  FaGithub, 
-  FaWhatsapp, 
+
+import {
+  FaGithub,
+  FaWhatsapp,
   FaLinkedin,
   FaHome,
   FaUser,

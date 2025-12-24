@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi';
-import Image from 'next/image';
+
 
 
 interface HeaderProps {
@@ -37,11 +37,10 @@ export default function Header({ activeSection, scrollToSection }: HeaderProps) 
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`px-4 py-2 rounded-lg text-lg  font-semibold transition-all duration-300 ${
-                  activeSection === item.id
+                className={`px-4 py-2 rounded-lg text-lg  font-semibold transition-all duration-300 ${activeSection === item.id
                     ? 'bg-[#00EAFF] text-black font-semibold'
                     : 'text-white hover:text-[#00EAFF] hover:bg-[#00EAFF]/10'
-                }`}
+                  }`}
               >
                 {item.label}
               </button>
@@ -53,27 +52,26 @@ export default function Header({ activeSection, scrollToSection }: HeaderProps) 
               Hire Me
             </button>
           </a>
-          
 
-         
+
+
           <button onClick={toggleMenu} className="lg:hidden p-2 text-white hover:text-[#00EAFF] transition-colors">
             {isMenuOpen ? <HiOutlineX size={24} /> : <HiOutlineMenu size={24} />}
           </button>
         </div>
 
-        
+
         {isMenuOpen && (
           <div className="lg:hidden bg-[#0a0a0a] border-t border-[#00EAFF]/20">
             <div className="px-4 py-4 space-y-2">
               {navItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => {scrollToSection(item.id); setIsMenuOpen(false)}}
-                  className={`w-full text-left px-4 py-2 rounded-lg transition-all duration-300 ${
-                    activeSection === item.id
+                  onClick={() => { scrollToSection(item.id); setIsMenuOpen(false) }}
+                  className={`w-full text-left px-4 py-2 rounded-lg transition-all duration-300 ${activeSection === item.id
                       ? 'bg-[#00EAFF] text-black font-semibold'
                       : 'text-white hover:text-[#00EAFF] hover:bg-[#00EAFF]/10'
-                  }`}
+                    }`}
                 >
                   {item.label}
                 </button>
@@ -84,7 +82,7 @@ export default function Header({ activeSection, scrollToSection }: HeaderProps) 
                   Hire Me
                 </button>
               </a>
-              
+
             </div>
           </div>
         )}

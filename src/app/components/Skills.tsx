@@ -66,7 +66,14 @@ export default function Skills() {
     </div>
   );
 
-  const SkillCard = ({ skill, animated }: { skill: any; animated: boolean }) => (
+  interface Skill {
+    name: string;
+    percentage: number;
+    color: string;
+    icon: React.ReactNode;
+  }
+
+  const SkillCard = ({ skill, animated }: { skill: Skill; animated: boolean }) => (
     <div className="group bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition-all duration-300 hover:scale-105 border border-white/20">
       <div className="flex justify-between items-center mb-2">
         <div className="flex items-center gap-2 text-white font-semibold text-sm">
@@ -162,7 +169,7 @@ export default function Skills() {
           <p className="text-gray-400 text-md mb-6">Ready to bring your project to life?</p>
           <a href="#contact">
             <button className="bg-linear-to-r from-[#00EAFF] to-cyan-500 text-black font-bold px-8 py-4 rounded-2xl hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-2xl">
-              Let's Work Together →
+              Let&apos;s Work Together →
             </button>
           </a>
         </div>

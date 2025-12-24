@@ -48,7 +48,7 @@ export default function Testimonials() {
       {/* Modern Grid Background */}
       <div className="absolute inset-0">
         {/* Main Grid Pattern */}
-        <div 
+        <div
           className="absolute inset-0 opacity-10"
           style={{
             backgroundImage: `
@@ -60,7 +60,7 @@ export default function Testimonials() {
             maskImage: 'radial-gradient(circle at center, black, transparent 80%)'
           }}
         />
-        
+
         {/* Animated Grid Lines */}
         <div className="absolute inset-0">
           {/* Horizontal Lines */}
@@ -79,7 +79,7 @@ export default function Testimonials() {
               }}
             />
           ))}
-          
+
           {/* Vertical Lines */}
           {[...Array(8)].map((_, i) => (
             <motion.div
@@ -140,7 +140,7 @@ export default function Testimonials() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Enhanced Header */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -151,13 +151,13 @@ export default function Testimonials() {
             <div className="w-2 h-2 rounded-full bg-[#00EAFF] animate-pulse" />
             <span className="text-sm text-[#00EAFF] font-medium tracking-wider">TESTIMONIALS</span>
           </div>
-          
+
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             What <span className="bg-linear-to-r from-[#00EAFF] via-[#79e2eb] to-[#00EAFF] bg-clip-text text-transparent">People Say</span>
           </h2>
-          
+
           <p className="text-white/60 text-lg max-w-2xl mx-auto">
-            Direct feedback from talented professionals I've collaborated with on various projects
+            Direct feedback from talented professionals I&apos;ve collaborated with on various projects
           </p>
         </motion.div>
 
@@ -173,7 +173,7 @@ export default function Testimonials() {
               className="relative"
             >
               {/* Card with Grid Background */}
-              <div 
+              <div
                 className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 backdrop-blur-sm relative overflow-hidden"
                 style={{
                   backgroundImage: `
@@ -201,7 +201,7 @@ export default function Testimonials() {
                       <FaQuoteLeft className="text-3xl text-[#00EAFF]" />
                     </div>
                   </motion.div>
-                  
+
                   {/* Quote Text */}
                   <motion.p
                     initial={{ opacity: 0, y: 10 }}
@@ -209,9 +209,9 @@ export default function Testimonials() {
                     transition={{ delay: 0.3 }}
                     className="text-white/90 text-lg md:text-xl italic leading-relaxed mb-10 px-4"
                   >
-                    "{testimonials[activeIndex].quote}"
+                    &ldquo;{testimonials[activeIndex].quote}&rdquo;
                   </motion.p>
-                  
+
                   {/* Person Info */}
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
@@ -237,7 +237,7 @@ export default function Testimonials() {
                           </div>
                         </div>
                       </div>
-                      
+
                       {/* Enhanced Navigation Buttons */}
                       <div className="flex gap-3">
                         <motion.button
@@ -249,7 +249,7 @@ export default function Testimonials() {
                         >
                           <FaArrowLeft />
                         </motion.button>
-                        
+
                         <motion.button
                           onClick={nextTestimonial}
                           whileHover={{ scale: 1.1 }}
@@ -277,12 +277,11 @@ export default function Testimonials() {
                 className="relative group"
                 aria-label={`View testimonial from ${testimonials[index].name}`}
               >
-                <div 
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === activeIndex 
-                      ? 'bg-[#00EAFF] scale-125' 
+                <div
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === activeIndex
+                      ? 'bg-[#00EAFF] scale-125'
                       : 'bg-white/30 hover:bg-white/50'
-                  }`}
+                    }`}
                 />
                 <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="bg-black/80 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10">
@@ -301,7 +300,7 @@ export default function Testimonials() {
           <h3 className="text-2xl font-bold text-white text-center mb-10">
             All Testimonials
           </h3>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <motion.div
@@ -314,7 +313,7 @@ export default function Testimonials() {
                 className="relative group"
               >
                 {/* Card Background */}
-                <div 
+                <div
                   className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm relative overflow-hidden"
                   style={{
                     backgroundImage: `
@@ -326,7 +325,7 @@ export default function Testimonials() {
                 >
                   {/* Hover Effect */}
                   <div className="absolute inset-0 bg-linear-to-br from-[#00EAFF]/5 via-transparent to-[#00EAFF]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
+
                   {/* Content */}
                   <div className="relative z-10">
                     <div className="flex items-start gap-4 mb-4">
@@ -348,14 +347,14 @@ export default function Testimonials() {
                         </p>
                       </div>
                     </div>
-                    
+
                     <div className="mb-4 text-[#00EAFF]">
                       <FaQuoteLeft className="inline mr-2" />
                       <FaQuoteRight className="inline ml-2" />
                     </div>
-                    
+
                     <p className="text-white/80 italic leading-relaxed">
-                      "{testimonial.quote}"
+                      &ldquo;{testimonial.quote}&rdquo;
                     </p>
                   </div>
                 </div>

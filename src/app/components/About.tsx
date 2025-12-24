@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { HiOutlineDownload, HiOutlineLightBulb, HiOutlineCog, HiOutlineTemplate, HiOutlineShieldCheck} from 'react-icons/hi';
+import { HiOutlineDownload, HiOutlineLightBulb, HiOutlineCog, HiOutlineTemplate, HiOutlineShieldCheck } from 'react-icons/hi';
 import { motion, Variants } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
@@ -51,12 +51,12 @@ export default function About() {
   };
 
   const itemVariants: Variants = {
-    hidden: { 
-      opacity: 0, 
-      y: 50 
+    hidden: {
+      opacity: 0,
+      y: 50
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.6,
@@ -66,13 +66,13 @@ export default function About() {
   };
 
   const imageVariants: Variants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       y: 60,
       scale: 0.9
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       scale: 1,
       transition: {
@@ -83,13 +83,13 @@ export default function About() {
   };
 
   const experienceVariants: Variants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       x: 50,
       y: 30
     },
     visible: (index) => ({
-      opacity: 1, 
+      opacity: 1,
       x: 0,
       y: 0,
       transition: {
@@ -103,7 +103,7 @@ export default function About() {
   return (
     <section id="about" className="py-20 bg-[#ffffff] relative overflow-hidden" ref={ref}>
 
-      <motion.div 
+      <motion.div
         className="absolute top-8 right-8 w-24 h-24 animate-float"
         initial={{ opacity: 0, scale: 0 }}
         animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
@@ -117,9 +117,9 @@ export default function About() {
           className="w-full h-full object-contain"
         />
       </motion.div>
-      
-      <motion.div 
-        className="absolute bottom-8 left-8 w-20 h-20 animate-float" 
+
+      <motion.div
+        className="absolute bottom-8 left-8 w-20 h-20 animate-float"
         style={{ animationDelay: '1s' }}
         initial={{ opacity: 0, scale: 0 }}
         animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
@@ -136,25 +136,25 @@ export default function About() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <motion.h2 
+          <motion.h2
             className="text-5xl font-bold text-[#0a0a0a] mb-4"
             variants={itemVariants}
           >
             About <span className="text-[#00EAFF]">Me</span>
           </motion.h2>
-          
-          <motion.div 
-            className="w-24 h-[7px] rounded-2xl bg-[#000] mx-auto mb-6"
+
+          <motion.div
+            className="w-24 h-[7px] rounded-2xl bg-black mx-auto mb-6"
             variants={itemVariants}
           />
-          
-          <motion.p 
+
+          <motion.p
             className="text-[#0a0a0a] text-lg max-w-3xl mx-auto"
             variants={itemVariants}
           >
@@ -164,7 +164,7 @@ export default function About() {
 
         <div className="grid lg:grid-cols-2 gap-12">
 
-          <motion.div 
+          <motion.div
             className="ml-20"
             variants={imageVariants}
             initial="hidden"
@@ -184,22 +184,20 @@ export default function About() {
           <div>
             <div className="relative">
               {experiences.map((exp, index) => (
-                <motion.div 
-                  key={index} 
+                <motion.div
+       key={index}
                   className="relative flex items-start space-x-4"
                   custom={index}
                   variants={experienceVariants}
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
                 >
-                  {/* Icon */}
-                  <div className="flex-shrink-0 w-15 h-15 p-3 bg-[#00EAFF] rounded-full flex items-center justify-center text-[#fff] hover-scale hover-glow transition-all duration-300">
+                  <div className="shrink-0 w-15 h-15 p-3 bg-[#00EAFF] rounded-full flex items-center justify-center text-white hover-scale hover-glow transition-all duration-300">
                     {exp.icon}
                   </div>
-                  
-                  {/* Content */}
+
                   <div className="flex-1 pb-8 group">
-                    <h4 className="text-2xl font-bold text-[#0a0a0a] mb-1 group-hover:text-[#000] transition-colors duration-300">
+                    <h4 className="text-2xl font-bold text-[#0a0a0a] mb-1 group-hover:text-black transition-colors duration-300">
                       {exp.title}
                     </h4>
                     <p className="text-[#00EAFF] font-bold mb-2">
@@ -209,8 +207,7 @@ export default function About() {
                       {exp.description}
                     </p>
                   </div>
-                  
-                  {/* Vertical Line */}
+
                   {index < experiences.length - 1 && (
                     <div className="absolute left-10 top-14 w-1.5 h-40 bg-[#0a0a0a] group-hover:bg-[#00EAFF] transition-colors duration-300"></div>
                   )}
@@ -220,8 +217,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* Download Resume Button */}
-        <motion.div 
+        <motion.div
           className="text-center mt-12"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
-import { HiOutlineArrowRight } from 'react-icons/hi';
+
 import { FaChevronLeft, FaChevronRight, FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
 
 export default function Projects() {
@@ -100,19 +100,18 @@ export default function Projects() {
             <button
               key={index}
               onClick={() => { setSelectedCategory(cat); setCurrentSlide(0); }}
-              className={`px-5 py-2 rounded-full font-medium transition-all duration-300 ${
-                selectedCategory === cat
+              className={`px-5 py-2 rounded-full font-medium transition-all duration-300 ${selectedCategory === cat
                   ? "bg-[#00EAFF] text-black shadow-lg"
                   : "bg-white/10 text-white hover:bg-[#00EAFF]/20"
-              }`}
+                }`}
             >
               {cat}
             </button>
           ))}
         </div>
 
-        
-        
+
+
         {/* Carousel */}
         <div className="relative mb-12">
           <div className="relative overflow-hidden rounded-3xl">
@@ -120,7 +119,7 @@ export default function Projects() {
               {filteredProjects.map((project, index) => (
                 <div key={index} className="w-full shrink-0 p-4">
                   <div className="grid lg:grid-cols-2 gap-8 items-center">
-                    
+
                     {/* Image Section */}
                     <div className="relative w-full h-80 rounded-2xl overflow-hidden">
                       <Image
@@ -182,8 +181,8 @@ export default function Projects() {
         </div>
 
 
-            
-          
+
+
 
       </div>
     </section>

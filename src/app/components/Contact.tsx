@@ -1,18 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import { 
-  HiOutlineMail, 
-  HiOutlinePhone, 
+import {
+  HiOutlineMail,
+  HiOutlinePhone,
   HiOutlineLocationMarker,
   HiOutlineUser,
   HiOutlineDocumentText
 } from 'react-icons/hi';
-import { 
-  FaFacebook, 
-  FaInstagram, 
+import {
+  FaInstagram,
   FaEnvelope,
-  FaGithub,
   FaLinkedin,
   FaPaperPlane
 } from 'react-icons/fa';
@@ -57,7 +55,6 @@ export default function Contact() {
   return (
     <section id="contact" className="py-20 bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-[#00EAFF] mb-4">
             Get In Touch
@@ -69,32 +66,31 @@ export default function Contact() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Left - Contact Information */}
           <div className="bg-white rounded-2xl p-8 shadow-xl">
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-[#0a0a0a] mb-4">
                 Have questions or need more information? We&apos;re here to help—reach out anytime!
               </h3>
-              
+
               <div className="space-y-4">
                 <div className="flex items-start space-x-4">
-                  <HiOutlineLocationMarker className="w-6 h-6 text-[#00EAFF] flex-shrink-0 mt-1" />
+                  <HiOutlineLocationMarker className="w-6 h-6 text-[#00EAFF] shrink-0 mt-1" />
                   <div>
                     <p className="text-[#0a0a0a] font-medium">Location</p>
                     <p className="text-[#0a0a0a]/80">Sector Muhoza, K37 Musanze, Rwanda</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-4">
-                  <HiOutlineMail className="w-6 h-6 text-[#00EAFF] flex-shrink-0 mt-1" />
+                  <HiOutlineMail className="w-6 h-6 text-[#00EAFF] shrink-0 mt-1" />
                   <div>
                     <p className="text-[#0a0a0a] font-medium">Email Us</p>
                     <p className="text-[#0a0a0a]/80">utujesandrine456@gmail.com</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-4">
-                  <HiOutlinePhone className="w-6 h-6 text-[#00EAFF] flex-shrink-0 mt-1" />
+                  <HiOutlinePhone className="w-6 h-6 text-[#00EAFF] shrink-0 mt-1" />
                   <div>
                     <p className="text-[#0a0a0a] font-medium">Call Us</p>
                     <p className="text-[#0a0a0a]/80">+250 785 805 869</p>
@@ -111,13 +107,13 @@ export default function Contact() {
                       <FaInstagram className="w-5 h-5 text-[#0a0a0a]" />
                     </div>
                   </a>
-                  
+
                   <a href='mailto:utujesandrine456@gmail.com'>
                     <div className="w-10 h-10 bg-[#00EAFF] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#00cccc] transition-colors duration-300">
                       <FaEnvelope className="w-5 h-5 text-[#0a0a0a]" />
                     </div>
                   </a>
-                    
+
                   <a href="https://www.linkedin.com/in/uwase-utuje-sandrine-5842b8386/">
                     <div className="w-10 h-10 bg-[#00EAFF] rounded-full flex items-center justify-center cursor-pointer hover:bg-[#00cccc] transition-colors duration-300">
                       <FaLinkedin className="w-5 h-5 text-[#0a0a0a]" />
@@ -134,7 +130,7 @@ export default function Contact() {
               <h3 className="text-2xl font-bold text-[#0a0a0a] mb-6">
                 Send me a message
               </h3>
-              
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="text-[#0a0a0a] font-medium mb-2 flex items-center">
@@ -152,7 +148,7 @@ export default function Contact() {
                     placeholder="Your name"
                   />
                 </div>
-                
+
                 <div>
                   <label htmlFor="email" className="text-[#0a0a0a] font-medium mb-2 flex items-center">
                     <HiOutlineMail className="w-4 h-4 mr-2 text-[#00EAFF]" />
@@ -169,7 +165,7 @@ export default function Contact() {
                     placeholder="Your email"
                   />
                 </div>
-                
+
                 <div>
                   <label htmlFor="message" className=" text-[#0a0a0a] font-medium mb-2 flex items-center">
                     <HiOutlineDocumentText className="w-4 h-4 mr-2 text-[#00EAFF]" />
@@ -186,7 +182,7 @@ export default function Contact() {
                     placeholder="Your message"
                   ></textarea>
                 </div>
-                
+
                 <button
                   type="submit"
                   className="w-full px-8 py-3 bg-[#00EAFF] text-[#0a0a0a] rounded-lg hover:bg-[#00cccc] transition-all duration-300 font-medium shadow-lg hover:shadow-xl flex items-center justify-center"
